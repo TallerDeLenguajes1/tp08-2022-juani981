@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.IO;
 using System;
-using System.Text.Json;
+
 
 public class ListadoFormateado
 {
@@ -14,7 +14,7 @@ public static void Main(){
 
 //Console.WriteLine("Ingrese un nombre de ruta a buscar:");
 string ruta =@"C:\Users\Juan Ignacio Carrizo\Desktop";
-//MostrarDirectorio(ruta);
+MostrarDirectorio(ruta);
 EscribirArchivo(ruta);
 }
 
@@ -43,11 +43,11 @@ static void MostrarDirectorio(string ruta){
 static void EscribirArchivo(string ruta){ 
     List<string> ListarCarpetas = Directory.GetDirectories(ruta).ToList();
     List<string> ListarArchivos = Directory.GetFiles(ruta).ToList();
-    StreamWriter sr = new StreamWriter(ruta+@"index.csv");
+    StreamWriter sw = new StreamWriter(ruta+@"\index.csv");
 
-    if (!File.Exists(ruta+@"index.csv"))
+    if (!File.Exists(ruta+@"\index.csv"))
     {
-        sr.WriteLine("Nro de Registro;Nombre del Archivo;Extension;");
+        sw.WriteLine("Nro de Registro;Nombre del Archivo;Extension;");
     }
         int n=0;
         /*//Console.WriteLine("Archivos en Carpetas:");
@@ -63,9 +63,9 @@ static void EscribirArchivo(string ruta){
         //Console.WriteLine("Archivos Sueltos:");
         foreach (string archivo in ListarArchivos)
         {  
-            sr.WriteLine(n+";"+Path.GetFileNameWithoutExtension(archivo)+";"+Path.GetExtension(archivo)+";");
+            sw.WriteLine(n+";"+Path.GetFileNameWithoutExtension(archivo)+";"+Path.GetExtension(archivo)+";");
             n++;
         }   
-    sr.Close();
+    sw.Close();
 }
 }
